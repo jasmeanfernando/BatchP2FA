@@ -1,27 +1,19 @@
-# P2FA for Python3.x
+# BatchP2FA-Python3
+The P2FA is a tool that automatically aligns audio recordings with their corresponding transcriptions at the phoneme level. It works by using a Hidden Markov Model (HMM) to align each phoneme in the transcription with its corresponding segment in the audio waveform. align.py is the Python script that is able to take in a singular input pair of a sound file and a transcription file of that sound and output a TextGrid file. TextGrid file is a format used to store annotations of speech/audio recordings. It is the default P2FA output format.
 
-This is a modified version of P2FA for Python3 compatibility.
-Everything else remains the same as the original P2FA.
-Forced alignment helps to align linguistic units (e.g., phoneme or
-words) with the corresponding sound file. All you need is to have a
-sound file with a transcription file.
-The output will be .TextGrid file with time-aligned phone, word and
-optionally state-level tiers.
+This is a modified version of P2FA for Python3 compatibility. This version of the P2FA was created by [jaekookang](https://github.com/jaekookang/p2fa_py3) on Github! In addition to the original functionality of producing a singular TextGrid file via terminal, this modified BatchP2FA includes the ability to simply **run** two additional scripts and allows the user to process _batches_ of TextGrids, rather than one.
 
-This was tested on macOS Catalina and Arch Linux.
+**1) text_file_batch.py:** File that allow users to open .csv file containing all transcriptions within a particular test case and generate .txt files for each transcript. This transcription should be saved in the p2fa_input directory for the next batch process. The p2fa_input directory should also contain the corresponding .wav files (sound files) of the transcriptions.
+
+**2) text_grid_batch.py:** File that allows users to run align.py outside of the terminal and access all input files in the p2fa_input directory and produce batches of TextGrids for a particular test case.
+
+BatchP2FA is most useful for research purposes and I made these modifications as a part of my Research Assistant position under the Language Acquisition and Processing Lab run by Dr. Karin Stromswold and Sten Knutsen.
 
 ## Install HTK
-First, you need to download HTK source code (http://htk.eng.cam.ac.uk/).
-This HTK installation guide is retrieved from
-[Link](https://github.com/prosodylab/Prosodylab-Aligner).
-Installation is based on macOS Sierra.
+First, you need to download the HTK source code (http://htk.eng.cam.ac.uk/) which the P2FA. This HTK installation guide is retrieved from
+[Link](https://github.com/prosodylab/Prosodylab-Aligner). The installation guidelines below is based on macOS Monterey.
 
-**Note:** I couldn't run HTK-3.4.1 on Arch Lmaek
-inux. I switched to 3.4.0
-and everything works fine. Installation of HTK is the same as the one
-described below.
-
-Unzip HTK-3.4.1.tar.gz file
+Unzip HTK-3.4.1.tar.gz file.
 
 ```bash
 $ tar -xvf HTK-3.4.1.tar.gz
@@ -83,13 +75,13 @@ $ brew install sox
 
 ## Run
 
-### stand alone
+### Stand Alone
 
 ```bash
 $ python align.py examples/ploppy.wav examples/ploppy.txt examples/ploppy.TextGrid
 ```
 
-### as part of your code
+### Part of your code
 
 You can invoke the aligner from your code:
 
@@ -102,18 +94,10 @@ phoneme_alignments, word_alignments = align.align('WAV_FILE_PATH', 'TRANSCRIPTIO
 
 phoneme_alignments, word_alignments, state_alignments = align.align('WAV_FILE_PATH', 'TRANSCRIPTION_FILE_PATH', state_align=True)
 ```
-
-## Result
-
-![image_of_ploppy_dot_png](p2fa/_tmp/ploppy.png)
-
-With state-alignments
-
-![image_of_ploppy_dot_png](p2fa/_tmp/ploppy_state.png)
+<p align="center">
+<img width="500" height="300" src="https://github.com/jasmeanfernando/BatchP2FA/assets/98361155/a316d13b-2692-4391-85d4-3630c240c8bc" alt="HomePage" title="HomePage">
+ <p>
 
 ## References
 - http://www.ling.upenn.edu/phonetics/p2fa/
-- Jiahong Yuan and Mark Liberman. 2008. Speaker identification on the SCOTUS corpus. Proceedings of Acoustics '08.
-- https://github.com/prosodylab/Prosodylab-Aligner (P2FA seems better than Prosodylab-Aligner based on my qualitative evaluation)
-- English HMM-state level aligner: [Link](https://github.com/jaekookang/p2fa_state_aligner)
-- Korean Forced Aligner: [Link](https://github.com/EMCSlabs/Programs/tree/master/Korean_FA) from EMCSLabs.
+- https://github.com/jaekookang/p2fa_py3
