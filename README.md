@@ -14,7 +14,7 @@ In essence, BatchP2FA is most useful for research purposes. I made these modific
 
 _Most useful when transcriptions for audio is already available._
 
-**2) text_grid_batch.py:** File that compiles the essential speech processing data in the input_txt and input_wav directories and automates P2FA's align.py to generate 500+ batches of data sets. We use **OpenAI's Whisper** model to transcribe an audio file and create its transcription file which is stored in P2FA's input_txt directory. We then use both the audio and transcription file as a singular input pair to generate its TextGrid file. Each input pair should have the same exact name, specifically participant#_p14_trial#.txt; Must be labeled p14 to signify cases detailing contrastive stress production collected by the Language Acquisition and Processing Lab.
+**2) run_p2fa.py:** File that compiles the essential speech processing data in the input_txt and input_wav directories and automates P2FA's align.py to generate 500+ batches of data sets. We use **OpenAI's Whisper** model to transcribe an audio file and create its transcription file which is stored in P2FA's input_txt directory. We then use both the audio and transcription file as a singular input pair to generate its TextGrid file. Each input pair should have the same exact name, specifically participant#_p14_trial#.txt; Must be labeled p14 to signify cases detailing contrastive stress production collected by the Language Acquisition and Processing Lab.
 
 _Most useful when transcriptions for audio is not available; It allows the user to simply run align.py using just the audio file._
 
